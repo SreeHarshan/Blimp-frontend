@@ -1,0 +1,44 @@
+@keyframes shatter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+.animate-shatter {
+  animation: shatter 0.5s ease-in-out forwards;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Particle animation */
+@keyframes shatter-particle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--particle-tx, 0), var(--particle-ty, 0)) scale(0);
+    opacity: 0;
+  }
+}
+
+.shatter-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #f59e0b;
+  border-radius: 50%;
+  animation: shatter-particle 0.5s ease-out forwards;
+  animation-delay: var(--particle-delay, 0s);
+  z-index: 10;
+}
