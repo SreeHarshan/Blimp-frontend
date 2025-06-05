@@ -1,27 +1,58 @@
 import NoteTile from "./NoteTile";
+import { useState } from "react";
 
-function NoteList({list,setList}) {
+import { deleteNote, updateNote } from "../../Core/api/notes";
 
-    const updateNote = (index, newText) => {
+function NoteList({ list, setList }) {
+
+    const [isLoading, setLoading] = useState(false);
+    
+    const _updateNoteServer = (id,content)=>{
+        try {
+            setLoading(true);
+            const noteId = updateNote(id, content);
+            if (!noteId) {
+                // TODO handle when the note is not updated
+                console.log("note is not updated");
+            }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const _updateNote = (id, content) => {
         const updatedNotes = [...list];
-        updatedNotes[index].text = newText;
+        const index = updatedNotes.findIndex(item => item.id === id);
+        updatedNotes[index].content = content;
         setList(updatedNotes);
+        _updateNoteServer(id,content);
     };
 
-    const delNote = (id) => {
+    const delNote = async (id) => {
         var updatedNotes = [...list];
-        console.log("Deleting note:"+id);
+        console.log("Deleting note:" + id);
         updatedNotes = updatedNotes.filter(item => item.id !== id);
-        setList(updatedNotes);
-        console.log(updatedNotes);
+        try {
+            const Id = await deleteNote(id);
+            if (Id) {
+                setList(updatedNotes);
+                console.log(updatedNotes);
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 
     return (<>
         <div class="flex-4 m-5 grid grid-cols-1 md:grid-cols-3">
             {list.length > 0 &&
                 list.map((item, index) => (
-                    <NoteTile key={item.id} id={item.id} text={item.text} onChange={(newText) => updateNote(index, newText)} 
-                    onDel={() => delNote(item.id)} />
+                    <NoteTile key={item.id} id={item.id} text={item.content}
+                     onChange={(newText) => _updateNote(item.id, newText)}
+                        onDel={() => delNote(item.id)} />
                 ))}
         </div>
         {list.length === 0 &&

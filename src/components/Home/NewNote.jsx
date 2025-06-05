@@ -14,7 +14,7 @@ function NewNote({ isOpen, onClose, onSave }) {
   };
 
   const handleSubmit = () => {
-    if (text.trim()) {
+    if (text) {
       onSave(text);
       setText("");
       onClose();

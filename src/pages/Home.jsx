@@ -1,24 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Header, NoteList, NewNote } from "../components/Home/index";
+import { addNote } from "../Core/api/notes";
 
-function HomePage() {
-    const [notes, setNotes] = useState([
-        { id:"1",text: "Lorem ipsum" },
-        { id:"2",text: "Lorem ipsum" },
-        { id:"3",text: "Lorem ipsum" },
-        { id:"4",text: "Lorem ipsum" },
-        { id:"5",text: "Lorem ipsum" },
-    ]);
+function HomePage({notes,setNotes}) {
     const [showModal, setShowModal] = useState(false);
+    const [isLoading,setLoading] = useState(false);
 
+    const _addNote = async (newNote) => {
+        try {
+          setLoading(true);
+          const noteId = await addNote(newNote);
+          return noteId;
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+      };
 
     const handleSave = (newNote) => {
-        console.log(notes);
+        const id = _addNote(newNote);
         setNotes([...notes, {
-            id: "6",  // temp id
-            text: newNote
+            id: id,  
+            content: newNote
         }]);
-        console.log(notes);
     };
 
     return (<>

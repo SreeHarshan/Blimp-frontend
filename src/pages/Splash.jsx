@@ -1,18 +1,7 @@
 import { useState, useEffect } from 'react';
 import blimp from "../assets/blimp loading.gif";
 
-function SplashPage({ duration = 3000 }) {
-    const [visible, setVisible] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setVisible(false);
-        }, duration);
-
-        return () => clearTimeout(timer);
-    }, [duration]);
-
-    if (!visible) return null;
+function SplashPage() {
 
     return (
         <div className="fixed inset-0 bg-sky-100 z-50 flex items-center justify-center">
