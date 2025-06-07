@@ -21,8 +21,8 @@ This is the frontend for the **Blimp** application, built with React, containeri
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/blimp.git
-cd blimp
+git clone https://github.com/SreeHarshan/Blimp-frontend
+cd Blimp-frontend
 ```
 
 ---
@@ -52,4 +52,4 @@ docker run -d -p 3000:80 --name blimp-ui blimp-frontend
 
 Thank you for a taking a look at this 😊
 
-
+---
