@@ -1,10 +1,11 @@
 # Blimp Frontend
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![NGINX](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
 
-This is the frontend for the **Blimp** application, built with React, containerized using Docker, and served via `serve` with reverse proxy support through NGINX. For the backend part, please take a look at [Blimp backend](https://github.com/SreeHarshan/Blimp-backend).
+This is the frontend for the **Blimp** application, built with React and Tailwind, containerized using Docker, and served via `serve` with reverse proxy support through NGINX. For the backend part, please take a look at [Blimp backend](https://github.com/SreeHarshan/Blimp-backend).
 
 ---
 
