@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Axios
 const api = axios.create({
-  baseURL: 'http://0.0.0.0:5000', 
+  baseURL: 'https://harshanpvtserver.duckdns.org/blimp-backend', 
   timeout: 5000, 
 });
 
